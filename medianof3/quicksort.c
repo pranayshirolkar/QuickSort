@@ -48,11 +48,22 @@ quickSort(array,partitionPoint,right);
 }
 int partition(double array[], int left, int right)
 {
-	int pivotIndex=rand()%((right+1-left)+left);
-	double pivot=array[left];
+	int pivotIndex;
+	double pivot;
 	double tmp;
 	int a;
 	int i,j;
+	int rand1=rand()%((right+1-left)+left);
+	int rand2=rand()%((right+1-left)+left);
+	int rand3=rand()%((right+1-left)+left);
+	if(rand1<=rand2)
+{
+if(rand2<=3)
+{
+pivotIndex=rand2;
+} 
+}
+	pivot=array[pivotIndex];
 	i=left;
 	j=right;
 	printf("left: %d right: %d\n",i,j);

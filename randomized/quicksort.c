@@ -49,7 +49,7 @@ quickSort(array,partitionPoint,right);
 int partition(double array[], int left, int right)
 {
 	int pivotIndex=rand()%((right+1-left)+left);
-	double pivot=array[left];
+	double pivot=array[pivotIndex];
 	double tmp;
 	int a;
 	int i,j;
