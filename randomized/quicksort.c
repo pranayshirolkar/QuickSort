@@ -4,7 +4,7 @@ void quickSort(double [], int, int);
 int partition(double [], int, int);
 int main(int argc, char *argv[]) 
 {
-	FILE *inputFile;
+	FILE *inputFile,*outputFile;
 	int arraySize,i;
 	double *array;
 	if(argc!=2)
@@ -29,8 +29,10 @@ int main(int argc, char *argv[])
 	quickSort(array,0,arraySize-1);
 	printf("Sorting Complete\n");
 	i=0;
+	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
 {
+	fprintf("%.2f\n",array[i]);
 	printf("%.2f\n",array[i]);
 i++;
 }

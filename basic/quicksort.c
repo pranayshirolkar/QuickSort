@@ -56,15 +56,15 @@ int partition(double array[], int left, int right)
 	int i,j;
 	i=left;
 	j=right;
-	printf("left: %d right: %d\n",i,j);
-	printf("Pivot: %.2f\n",pivot);
-	scanf("%d",&a);
+//	printf("left: %d right: %d\n",i,j);
+//	printf("Pivot: %.2f\n",pivot);
+//	scanf("%d",&a);
 	while(i<=j)
 	{
 		while(i<=right)
 		{
-			printf("left: at array[%d]:%.2f\n",i,array[i]);
-scanf("%d",&a);
+//			printf("left: at array[%d]:%.2f\n",i,array[i]);
+//scanf("%d",&a);
 			if(array[i]>=pivot)
 			{
 				break;
@@ -73,8 +73,8 @@ scanf("%d",&a);
 		}
 		while(j>=left)
 		{
-			printf("right: at array[%d]:%.2f\n",j,array[j]);
-scanf("%d",&a);
+//			printf("right: at array[%d]:%.2f\n",j,array[j]);
+//scanf("%d",&a);
 			if(array[j]<=pivot)
 			{
 				break;
@@ -84,8 +84,8 @@ scanf("%d",&a);
 		if(i<=j)
 		{
 			//swap
-			printf("Swapping values [%d]: %.2f and [%d]: %.2f now...\n",i,array[i],j,array[j]);
-scanf("%d",&a);
+//			printf("Swapping values [%d]: %.2f and [%d]: %.2f now...\n",i,array[i],j,array[j]);
+//scanf("%d",&a);
 			tmp=array[i];
 			array[i]=array[j];
 			array[j]=tmp;
@@ -93,7 +93,7 @@ scanf("%d",&a);
 			j--;
 		}
 	}
-printf("returning: %d",i);
-scanf("%d",&a);
+//printf("returning: %d",i);
+//scanf("%d",&a);
 	return i;
 }
