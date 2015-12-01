@@ -1,5 +1,6 @@
 #include<stdio.h> 
 #include<stdlib.h>
+#include<time.h>
 void quickSort(double [], int, int);
 int partition(double [], int, int);
 int main(int argc, char *argv[]) 
@@ -7,6 +8,8 @@ int main(int argc, char *argv[])
 	FILE *inputFile, *outputFile;
 	int arraySize,i;
 	double *array;
+	clock_t begin,end;
+	double time_spent;
 	if(argc!=2)
 	{
 		printf("usage: %s <filename>\n",argv[0]);
@@ -22,17 +25,20 @@ int main(int argc, char *argv[])
 	while(i<arraySize)
 	{
 	fscanf(inputFile,"%lf",&array[i]);
-	printf("array[%d]: %.2f\n",i,array[i]);
+//	printf("array[%d]: %.2f\n",i,array[i]);
 	i++;
 	}
 	printf("Array building from file complete...\n");
+	begin=clock();
 	quickSort(array,0,arraySize-1);
-	printf("Sorting Complete\n");
+	end=clock();
+	time_spent=(double)(end-begin)/CLOCKS_PER_SEC;
+	printf("Sorting Complete. Time Spent %.2f sec= \n",time_spent);
 	i=0;
 	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
 	{
-		printf("%.2f\n",array[i]);
+//		printf("%.2f\n",array[i]);
 		fprintf(outputFile,"%.2f\n",array[i]);
 		i++;
 	}
