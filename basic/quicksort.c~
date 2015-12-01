@@ -4,7 +4,7 @@ void quickSort(double [], int, int);
 int partition(double [], int, int);
 int main(int argc, char *argv[]) 
 {
-	FILE *inputFile, *outputFile;
+	FILE *inputFile;
 	int arraySize,i;
 	double *array;
 	if(argc!=2)
