@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
 {
-	fprintf("%.2f\n",array[i]);
+	fprintf(outputFile,"%.2f\n",array[i]);
 	printf("%.2f\n",array[i]);
 i++;
 }
@@ -55,6 +55,7 @@ int partition(double array[], int left, int right)
 	double tmp;
 	int a;
 	int i,j;
+	printf("pivotIndex: %d",pivotIndex);
 	i=left;
 	j=right;
 	printf("left: %d right: %d\n",i,j);
