@@ -49,9 +49,9 @@ void quickSort(double array[], int left, int right)
 //double pivot;
 //pivot=array[left];
 int partitionPoint=partition(array,left,right);
-if(!(left==partitionPoint-1))
+if(left<partitionPoint-1)
 quickSort(array,left,partitionPoint-1);
-if(!(partitionPoint==right))
+if(partitionPoint<right)
 quickSort(array,partitionPoint,right);
 }
 int partition(double array[], int left, int right)

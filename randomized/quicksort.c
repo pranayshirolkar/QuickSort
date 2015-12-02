@@ -1,12 +1,15 @@
 #include<stdio.h> 
 #include<stdlib.h>
+#include<time.h>
 void quickSort(double [], int, int);
 int partition(double [], int, int);
 int main(int argc, char *argv[]) 
 {
 	FILE *inputFile,*outputFile;
 	int arraySize,i;
-	double *array;
+	double *array,time_spent;
+	clock_t begin,end;
+	srand(time(NULL));
 	if(argc!=2)
 	{
 		printf("usage: %s <filename>\n",argv[0]);
@@ -22,18 +25,21 @@ int main(int argc, char *argv[])
 	while(i<arraySize)
 	{
 	fscanf(inputFile,"%lf",&array[i]);
-	printf("array[%d]: %.2f\n",i,array[i]);
+//	printf("array[%d]: %.2f\n",i,array[i]);
 	i++;
 	}
 	printf("Array building from file complete...\n");
+	begin=clock();
 	quickSort(array,0,arraySize-1);
-	printf("Sorting Complete\n");
+	end=clock();
+	time_spent=(double)(end-begin)/CLOCKS_PER_SEC;
+	printf("Sorting Complete. Time Spent %.2f sec= \n",time_spent);
 	i=0;
 	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
 {
 	fprintf(outputFile,"%.2f\n",array[i]);
-	printf("%.2f\n",array[i]);
+	//printf("%.2f\n",array[i]);
 i++;
 }
 	return 0;
@@ -43,30 +49,32 @@ void quickSort(double array[], int left, int right)
 //double pivot;
 //pivot=array[left];
 int partitionPoint=partition(array,left,right);
-if(!(left==partitionPoint-1))
+if(left<partitionPoint-1)
 quickSort(array,left,partitionPoint-1);
-if(!(partitionPoint==right))
+if(partitionPoint<right)
 quickSort(array,partitionPoint,right);
 }
 int partition(double array[], int left, int right)
 {
-	int pivotIndex=rand()%((right+1-left)+left);
+//	printf("modulo: %d\n",right+1-left);
+	int pivotIndex=(rand()%(right+1-left))+left;
 	double pivot=array[pivotIndex];
 	double tmp;
 	int a;
 	int i,j;
-	printf("pivotIndex: %d",pivotIndex);
+	//	printf("pivotIndex: %d",pivotIndex);
 	i=left;
 	j=right;
-	printf("left: %d right: %d\n",i,j);
-	printf("Pivot: %.2f\n",pivot);
-	scanf("%d",&a);
+	//printf("left: %d right: %d\n",i,j);
+	//printf("Pivot: %.2f\n",pivot);
+//	scanf("%d",&a);
 	while(i<=j)
 	{
+//printf("loop chala\n");
 		while(i<=right)
 		{
-			printf("left: at array[%d]:%.2f\n",i,array[i]);
-scanf("%d",&a);
+//			printf("left: at array[%d]:%.2f\n",i,array[i]);
+//scanf("%d",&a);
 			if(array[i]>=pivot)
 			{
 				break;
@@ -75,8 +83,8 @@ scanf("%d",&a);
 		}
 		while(j>=left)
 		{
-			printf("right: at array[%d]:%.2f\n",j,array[j]);
-scanf("%d",&a);
+///			printf("right: at array[%d]:%.2f\n",j,array[j]);
+//scanf("%d",&a);
 			if(array[j]<=pivot)
 			{
 				break;
@@ -86,16 +94,22 @@ scanf("%d",&a);
 		if(i<=j)
 		{
 			//swap
-			printf("Swapping values [%d]: %.2f and [%d]: %.2f now...\n",i,array[i],j,array[j]);
-scanf("%d",&a);
+//			printf("Swapping values [%d]: %.2f and [%d]: %.2f now...\n",i,array[i],j,array[j]);
+			//scanf("%d",&a);
 			tmp=array[i];
+//			printf("god\n");
 			array[i]=array[j];
+//			printf("is\n");
 			array[j]=tmp;
+//			printf("great\n");
 			i++;
 			j--;
+//			printf("i=%d\n",i);	
+//			printf("j=%d\n",j);
 		}
+//		printf("god is in detail\n");
 	}
-printf("returning: %d",i);
-scanf("%d",&a);
+//printf("returning: %d\n",i);
+//scanf("%d",&a);
 	return i;
 }
