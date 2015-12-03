@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
 {
-	fprintf(outputFile,"%.2f\n",array[i]);
+	fprintf(outputFile,"%f\n",array[i]);
 	//printf("%.2f\n",array[i]);
 i++;
 }

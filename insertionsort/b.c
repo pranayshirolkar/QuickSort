@@ -3,6 +3,7 @@
 #include<time.h>
 void quickSort(double [], int, int);
 int partition(double [], int, int);
+void insertionSort(double [], int, int);
 int main(int argc, char *argv[]) 
 {
 	FILE *inputFile,*outputFile;
@@ -38,7 +39,7 @@ int main(int argc, char *argv[])
 	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
 {
-	fprintf(outputFile,"%.2f\n",array[i]);
+	fprintf(outputFile,"%f\n",array[i]);
 	//printf("%.2f\n",array[i]);
 i++;
 }
@@ -49,15 +50,21 @@ void quickSort(double array[], int left, int right)
 //double pivot;
 //pivot=array[left];
 int partitionPoint=partition(array,left,right);
-if(left<partitionPoint-1)
-quickSort(array,left,partitionPoint-1);
-if(partitionPoint<right)
-quickSort(array,partitionPoint,right);
+if(left<right < 9)//defining l = 9 to switch to insertion sort
+{
+	insertionSort(array,left,right+1);
+}
+else
+{
+	if(left<partitionPoint-1) quickSort(array,left,partitionPoint-1);
+	if(partitionPoint<right) quickSort(array,partitionPoint,right);
+}
 }
 int partition(double array[], int left, int right)
 {
 //	printf("modulo: %d\n",right+1-left);
-	double pivot=array[left];
+	int pivotIndex=(rand()%(right+1-left))+left;
+	double pivot=array[pivotIndex];
 	double tmp;
 	int a;
 	int i,j;
@@ -111,4 +118,20 @@ int partition(double array[], int left, int right)
 //printf("returning: %d\n",i);
 //scanf("%d",&a);
 	return i;
+}
+void insertionSort(double array[], int left, int right)
+{
+int x=left+1;
+while(x<right)
+{
+double val=array[x];
+int j=x-1;
+while( j>=0 && val<array[j])
+{
+array[j+1]=array[j];
+j--;
+}
+array[j+1]=val;
+x++;
+}
 }
