@@ -50,7 +50,7 @@ void quickSort(double array[], int left, int right)
 //double pivot;
 //pivot=array[left];
 int partitionPoint=partition(array,left,right);
-if(left<right < 9)//defining l = 9 to switch to insertion sort
+if((right-left) < 9)//defining l = 9 to switch to insertion sort
 {
 	insertionSort(array,left,right+1);
 }
