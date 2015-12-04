@@ -3,6 +3,7 @@
 #include<time.h>
 void quickSort(double [], int, int);
 int partition(double [], int, int);
+int max_calls=0;
 int main(int argc, char *argv[]) 
 {
 	FILE *inputFile,*outputFile;
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
 	end=clock();
 	time_spent=(double)(end-begin)/CLOCKS_PER_SEC;
 	printf("Sorting Complete. Time Spent %.2f sec= \n",time_spent);
+	printf("Stack Depth: %d\n",max_calls);
 	i=0;
 	outputFile=fopen("output.txt","wb");
 	while(i<arraySize)
@@ -48,11 +50,17 @@ void quickSort(double array[], int left, int right)
 {
 //double pivot;
 //pivot=array[left];
+static int calls=0;
+calls++;
+//printf("calls: %d\n",calls);
+if(calls>max_calls) max_calls=calls;
+//printf("max calls: %d\n",max_calls);
 int partitionPoint=partition(array,left,right);
 if(left<partitionPoint-1)
 quickSort(array,left,partitionPoint-1);
 if(partitionPoint<right)
 quickSort(array,partitionPoint,right);
+calls--;
 }
 int partition(double array[], int left, int right)
 {
